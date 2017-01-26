@@ -1,4 +1,4 @@
-.PHONY: help watch dist php-server test test-watch
+.PHONY: help watch dist php-server test test-watch deploy
 
 WEBPACK_CMD = node_modules/.bin/webpack
 WEBPACK_ARGS = --config webpack.config.js --progress --colors --display-error-details
@@ -58,3 +58,7 @@ lint: ## Singlerun eslint
 php-server: ## Starts PHP-Server
 	@echo "${CYAN}${CLOUD}${NO_COLOR} ${GREEN}Starting PHP-Server${NO_COLOR} ${CYAN}${ARROW}${NO_COLOR}"
 	cd src && php -S localhost:8888
+
+deploy: ## Deploy to heroku
+	@echo "${CYAN}${CLOUD}${NO_COLOR} ${GREEN}Starting to Deploy${NO_COLOR} ${CYAN}${ARROW}${NO_COLOR}"
+	git subtree push --prefix dist heroku master
