@@ -4,7 +4,7 @@ import { render } from 'react-dom';
 import configureStore from './store/configureStore';
 
 import App from './components/AppComponent';
-
+console.log("AppInit");
 /*
 * Import all CSS
 * had to disable the no-used-var
