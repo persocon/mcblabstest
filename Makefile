@@ -61,4 +61,4 @@ php-server: ## Starts PHP-Server
 
 deploy: ## Deploy to heroku
 	@echo "${CYAN}${CLOUD}${NO_COLOR} ${GREEN}Starting to Deploy${NO_COLOR} ${CYAN}${ARROW}${NO_COLOR}"
-	git subtree push --prefix dist heroku master
+	git push heroku `git subtree split --prefix dist master`:master --force

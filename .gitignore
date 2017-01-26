@@ -138,8 +138,6 @@ node_modules
 bower_components
 src/app/javascript/vendor
 
-# Compiled webpack bundles
-bundle.js
 
 # SASS cache
 .sass-cache
