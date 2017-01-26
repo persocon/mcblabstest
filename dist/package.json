@@ -1,0 +1,12 @@
+{
+  "name": "mcblabs-test-dist",
+  "version": "0.0.1",
+  "description": "dist files",
+  "main": "server.js",
+  "scripts": {
+    "postinstall": "npm install express",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
