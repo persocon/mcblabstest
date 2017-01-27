@@ -1,9 +1,6 @@
-const setUser = (email, password) => ({
+const setUser = (token) => ({
   type: 'SET_USER',
-  user_info: {
-    email,
-    password,
-  },
+  token
 });
 
 export { setUser };

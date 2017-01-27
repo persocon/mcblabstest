@@ -1,30 +1,30 @@
 import fetch from 'isomorphic-fetch';
+import axios from 'axios';
 
-const fnFetch = (href) => {
+const fnFetch = (href, token) => {
   const url = `https://api-dev.linementor.com/core/${href}`;
-  return fetch(url)
-  .then(response => response.json());
+  const request = axios({
+    method: 'get',
+    url: url,
+    headers: {
+      'Authorization': `JWT ${token}`
+    }
+  })
+  return request;
 };
 
-const fnAuth = (args) => {
+const fnAuth = (formData) => {
   const url = `https://api-dev.linementor.com/core/auth/`;
-
-  const { email, password } = args;
-
-  let formData = new FormData();
-  formData.append('email', email);
-  formData.append('password', password);
   return fetch(url, {
     method: 'POST',
-    // mode: 'cors',
     body: formData,
   })
   .then((response) => {
-    return response.json();
-  })
-  .then((data) => {
-    console.log(data);
-    debugger;
+    if(response.status === 200) {
+      return response.json();
+    } else {
+      return response.status; // send error back so it can be handle on the form ?!
+    }
   })
   .catch((e) =>{
     throw new Error(e.message);

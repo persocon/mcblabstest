@@ -36,16 +36,16 @@ var config = {
     noParse: [
         /node_modules\/sinon\//,
     ],
-    preLoaders: [
-     {
-       test: /\.jsx?$/,
-       exclude: [
-         /node_modules/,
-         /test/
-       ],
-       loader: 'babel-loader'
-     },
-   ],
+  //   preLoaders: [
+  //    {
+  //      test: /\.jsx?$/,
+  //      exclude: [
+  //        /node_modules/,
+  //        /test/
+  //      ],
+  //      loader: 'babel-loader'
+  //    },
+  //  ],
     loaders: [
       {
         exclude: /node_modules/,

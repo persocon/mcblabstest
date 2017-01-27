@@ -1,7 +1,7 @@
-import { getUserAuth } from './user';
+import { getRecordings } from './recordings';
 
 export default function* rootSaga() {
   yield [
-    getUserAuth(),
+    getRecordings(),
   ];
 }

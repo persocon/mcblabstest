@@ -3,8 +3,7 @@ import { Provider } from 'react-redux';
 import { render } from 'react-dom';
 import configureStore from './store/configureStore';
 
-import App from './components/AppComponent';
-console.log("AppInit");
+import App from './containers/AppContainer';
 /*
 * Import all CSS
 * had to disable the no-used-var

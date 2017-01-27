@@ -23,7 +23,7 @@ export default function configureStore() {
     undefined,
     composedEnhancer
   );
-  persistStore(store, { blacklist: ['recording'] });
+  persistStore(store, { blacklist: ['recordings'] });
   sagaMiddleware.run(rootSaga);
   return store;
 }

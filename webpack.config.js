@@ -57,7 +57,7 @@ var config = {
     inline: true
   },
   plugins: [
-    new ExtractTextPlugin("stylesheet/style.css"),
+    new ExtractTextPlugin("stylesheet/style.css", {allChunks: true}),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development')
     })
