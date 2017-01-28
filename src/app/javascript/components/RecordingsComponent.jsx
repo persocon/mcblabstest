@@ -7,7 +7,7 @@ class RecordingsComponent extends React.Component {
     this.props.setRecordingsRequest();
   }
   list() {
-    if(this.props.recordings.recordings_list.length >= 1) {
+    if(this.props.recordings.recordings_list && this.props.recordings.recordings_list.length >= 1) {
       let recordingList = this.props.recordings.recordings_list.map((recording, index) => (
           <RecordingItemComponent recording={recording} key={index} />
         )

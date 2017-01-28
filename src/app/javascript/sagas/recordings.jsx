@@ -6,7 +6,7 @@ export function* doFetchRecordings() {
   const { token } = yield select(selectUserInfo);
   const fetchUrl = 'recording/';
   const fetchedRecords = yield call(Api.fnFetch, fetchUrl, token);
-  yield put({ type: 'SET_RECORDINGS_LIST', recordings_list: fetchedRecords.data });
+  yield put({ type: 'SET_RECORDINGS_LIST', recordings_list: fetchedRecords });
 }
 
 export function* getRecordings() {

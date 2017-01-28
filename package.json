@@ -28,7 +28,6 @@
     "express": "~4.13.3",
     "extract-text-webpack-plugin": "~1.0.1",
     "internal-ip": "~1.2.0",
-    "isomorphic-fetch": "^2.2.1",
     "karma": "^1.4.0",
     "karma-chai": "^0.1.0",
     "karma-chai-as-promised": "^0.1.2",

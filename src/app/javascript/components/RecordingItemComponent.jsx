@@ -1,61 +1,20 @@
 import React, { PropTypes } from 'react';
-import Moment from 'react-moment';
+
+import StarRatingComponent from './StarRatingComponent';
+import TextComponent from './TextComponent';
+import DurationComponent from './DurationComponent';
+import AudioComponent from './AudioComponent';
+import DateComponent from './DateComponent';
 
 class RecordingItemComponent extends React.Component {
-  transcript() {
-    if (this.props.recording.transcript) {
-      return(<p>{this.props.recording.transcript}</p>);
-    }
-  }
-  rating() {
-    if (this.props.recording.rating) {
-      const percent = Math.floor((100 / this.props.recording.rating) * 1);
-      return(
-        <div className="star-rating">
-          <span style={{width: `${percent}%`}}></span>
-        </div>
-      );
-    }
-  }
-  duration() {
-    if (this.props.recording.duration) {
-      // convert to int
-      const sec_num = parseInt(this.props.recording.duration, 10);
-      let hours   = Math.floor(sec_num / 3600);
-      let minutes = Math.floor((sec_num - (hours * 3600)) / 60);
-      let seconds = sec_num - (hours * 3600) - (minutes * 60);
-
-      if (hours   < 10) {hours   = "0"+hours;}
-      if (minutes < 10) {minutes = "0"+minutes;}
-      if (seconds < 10) {seconds = "0"+seconds;}
-      return(<p>{hours}:{minutes}:{seconds}</p>);
-    }
-  }
-  audio() {
-    if (this.props.recording.path) {
-      return(
-        <div>
-          <audio controls preload='none'>
-            <source src={this.props.recording.path} />
-            Your browser doesn't support html5 audio.
-          </audio>
-        </div>
-      );
-    }
-  }
-  created() {
-    if (this.props.recording.created) {
-      return(<p><Moment format='DD/MM/YYYY HH:mm:ss' tz='Europe/Berlin'>{this.props.recording.created}</Moment></p>);
-    }
-  }
   render() {
     return (
       <li>
-        {this.transcript()}
-        {this.rating()}
-        {this.duration()}
-        {this.audio()}
-        {this.created()}
+        <TextComponent text={this.props.recording.transcript} />
+        <StarRatingComponent rating={this.props.recording.rating} />
+        <DurationComponent duration={this.props.recording.duration} />
+        <AudioComponent path={this.props.recording.path} />
+        <DateComponent date={this.props.recording.created} />
       </li>
     );
   }

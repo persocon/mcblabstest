@@ -9,7 +9,9 @@ const fnFetch = (href, token) => {
     headers: {
       'Authorization': `JWT ${token}`
     }
-  })
+  }).then((response) => {
+    return response.data;
+  });
   return request;
 };
 
