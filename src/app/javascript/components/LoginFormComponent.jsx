@@ -43,20 +43,22 @@ class LoginFormComponent extends React.Component {
 
   render() {
     return (
-      <form onSubmit={(event) => this.onSubmit(event)}>
-        <Input type="email" label="Email address" icon="email" />
-        <Input type="password" label="Password" icon="lock" />
-        <Button label="Submit" raised primary />
-        <Snackbar
-          action='Dismiss'
-          active={this.state.active}
-          label='An Error occurred, try again later.'
-          timeout={2000}
-          onClick={() => this.hideSnackBar()}
-          onTimeout={() => this.hideSnackBar()}
-          type='cancel'
-        />
-      </form>
+      <section className='content'>
+        <form onSubmit={(event) => this.onSubmit(event)}>
+          <Input type="email" label="Email address" icon="email" />
+          <Input type="password" label="Password" icon="lock" />
+          <Button label="Submit" raised primary />
+          <Snackbar
+            action='Dismiss'
+            active={this.state.active}
+            label='An Error occurred, try again later.'
+            timeout={2000}
+            onClick={() => this.hideSnackBar()}
+            onTimeout={() => this.hideSnackBar()}
+            type='cancel'
+          />
+        </form>
+      </section>
     );
   }
 }

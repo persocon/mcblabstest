@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { AppBar, Button } from 'react-toolbox';
+import { AppBar, Button, Navigation } from 'react-toolbox';
 
 import LoginFormContainer from '../containers/LoginFormContainer';
 import RecordingsContainer from '../containers/RecordingsContainer';
@@ -23,7 +23,13 @@ class AppComponent extends React.Component {
   }
   renderLogoutButton() {
     if(this.props.user.token) {
-      return(<Button icon='exit_to_app' floating accent mini onMouseUp={(event) => this.logout(event)} />);
+      return(
+        <div style={{marginLeft: 'auto'}}>
+          <Navigation type='horizontal'>
+            <Button icon='exit_to_app' floating accent mini onMouseUp={(event) => this.logout(event)} />
+          </Navigation>
+        </div>
+      );
     }
   }
   render() {

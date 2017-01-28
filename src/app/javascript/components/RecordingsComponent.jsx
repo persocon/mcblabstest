@@ -18,7 +18,7 @@ class RecordingsComponent extends React.Component {
   }
   render() {
     return (
-      <section>
+      <section className='content'>
         {this.list()}
       </section>
     );
