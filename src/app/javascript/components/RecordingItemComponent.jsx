@@ -4,7 +4,7 @@ import Moment from 'react-moment';
 class RecordingItemComponent extends React.Component {
   transcript() {
     if (this.props.recording.transcript) {
-      return(this.props.recording.transcript);
+      return(<p>{this.props.recording.transcript}</p>);
     }
   }
   rating() {
@@ -28,14 +28,14 @@ class RecordingItemComponent extends React.Component {
       if (hours   < 10) {hours   = "0"+hours;}
       if (minutes < 10) {minutes = "0"+minutes;}
       if (seconds < 10) {seconds = "0"+seconds;}
-      return(`${hours}:${minutes}:${seconds}`);
+      return(<p>{hours}:{minutes}:{seconds}</p>);
     }
   }
   audio() {
     if (this.props.recording.path) {
       return(
         <div>
-          <audio controls>
+          <audio controls preload='none'>
             <source src={this.props.recording.path} />
             Your browser doesn't support html5 audio.
           </audio>
@@ -45,7 +45,7 @@ class RecordingItemComponent extends React.Component {
   }
   created() {
     if (this.props.recording.created) {
-      return(<Moment format='DD/MM/YYYY HH:mm:ss' tz='Europe/Berlin'>{this.props.recording.created}</Moment>);
+      return(<p><Moment format='DD/MM/YYYY HH:mm:ss' tz='Europe/Berlin'>{this.props.recording.created}</Moment></p>);
     }
   }
   render() {
