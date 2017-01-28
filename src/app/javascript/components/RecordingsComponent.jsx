@@ -7,10 +7,11 @@ class RecordingsComponent extends React.Component {
     this.props.setRecordingsRequest();
   }
   list() {
-    if(this.props.recordings.recordings_list && this.props.recordings.recordings_list.length >= 1) {
-      let recordingList = this.props.recordings.recordings_list.map((recording, index) => (
-          <RecordingItemComponent recording={recording} key={index} />
-        )
+    if (this.props.recordings.recordings_list &&
+      this.props.recordings.recordings_list.length >= 1) {
+      const recordingList = this.props.recordings.recordings_list.map((recording, index) => (
+        <RecordingItemComponent recording={recording} key={index} />
+      ),
       );
       return (<ul className="recordingList">{recordingList}</ul>);
     }
@@ -18,9 +19,9 @@ class RecordingsComponent extends React.Component {
   }
   render() {
     return (
-        <section className='content'>
-          {this.list()}
-        </section>
+      <section className="content">
+        {this.list()}
+      </section>
     );
   }
 }

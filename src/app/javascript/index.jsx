@@ -12,8 +12,10 @@ import App from './containers/AppContainer';
 */
 
 /* eslint-disable no-unused-vars */
+/* eslint-disable import/first */
 import 'react-toolbox/lib/commons.scss';
 import '../stylesheet/style.scss';
+/* eslint-enable import/first */
 /* eslint-enable no-unused-vars */
 
 
@@ -23,5 +25,5 @@ render(
   <Provider store={store}>
     <App />
   </Provider>,
-	document.getElementById('app')
+  document.getElementById('app'),
 );

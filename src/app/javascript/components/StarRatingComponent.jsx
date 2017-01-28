@@ -2,11 +2,11 @@ import React, { PropTypes } from 'react';
 import { FontIcon } from 'react-toolbox';
 
 class StarRatingComponent extends React.Component {
-  icons(totalIcons, iconName, color='grey') {
+  icons(totalIcons, iconName, color = 'grey') {
     const arr = Array(totalIcons).fill(1);
-    const icons = arr.map(function(item, index){
+    const icons = arr.map((item, index) => {
       const key = `${index}-${iconName}`;
-      return(<FontIcon key={key} style={{color: color}}>{iconName}</FontIcon>);
+      return (<FontIcon key={key} style={{ color }}>{iconName}</FontIcon>);
     });
     return icons;
   }
@@ -24,15 +24,15 @@ class StarRatingComponent extends React.Component {
     return stars;
   }
   render() {
-    return(
+    return (
       <div>
         {this.starRating()}
-    </div>
+      </div>
     );
   }
 }
 StarRatingComponent.propTypes = {
-  rating: PropTypes.number.isRequired
-}
+  rating: PropTypes.number.isRequired,
+};
 
 export default StarRatingComponent;

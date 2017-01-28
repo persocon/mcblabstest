@@ -1,7 +1,7 @@
 const resetUser = () => ({ type: 'RESET_USER' });
-const setUser = (token) => ({
+const setUser = token => ({
   type: 'SET_USER',
-  token
+  token,
 });
-const getUser = () => ({type: 'GET_USER'})
+const getUser = () => ({ type: 'GET_USER' });
 export { setUser, resetUser, getUser };

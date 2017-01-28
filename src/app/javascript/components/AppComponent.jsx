@@ -3,7 +3,6 @@ import { AppBar, Button, Navigation } from 'react-toolbox';
 
 import LoginFormContainer from '../containers/LoginFormContainer';
 import RecordingsContainer from '../containers/RecordingsContainer';
-import { setUser } from '../actions/user';
 
 class AppComponent extends React.Component {
   componentWillMount() {
@@ -11,33 +10,37 @@ class AppComponent extends React.Component {
   }
   screen() {
     if (this.props.app.screen === 'login') {
-      return(<LoginFormContainer />);
+      return (<LoginFormContainer />);
     } else if (this.props.app.screen === 'recordings') {
-      return(<RecordingsContainer />);
+      return (<RecordingsContainer />);
     }
-    return(<LoginFormContainer />); // redundant answer if no case fulfill
+    return (<LoginFormContainer />); // redundant answer if no case fulfill
   }
-  logout(event) {
+  logout() {
     this.props.resetApp();
     this.props.resetUser();
   }
   renderLogoutButton() {
-    if(this.props.user.token) {
-      return(
-        <div style={{marginLeft: 'auto'}}>
-          <Navigation type='horizontal'>
-            <Button icon='exit_to_app' floating accent mini onMouseUp={(event) => this.logout(event)} />
-          </Navigation>
-        </div>
-      );
-    }
+    return (
+      <div style={{ marginLeft: 'auto' }}>
+        <Navigation type="horizontal">
+          <Button
+            icon="exit_to_app"
+            floating
+            accent
+            mini
+            onMouseUp={event => this.logout(event)}
+          />
+        </Navigation>
+      </div>
+    );
   }
   render() {
     return (
       <section>
-        <AppBar title='React Toolbox'>
+        <AppBar title="React Toolbox">
           MCBLabs Test
-          {this.renderLogoutButton()}
+          {this.props.user.token ? this.renderLogoutButton() : ''}
         </AppBar>
         {this.screen()}
       </section>

@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 import ReactCSSTransitionGroup from 'react/lib/ReactCSSTransitionGroup';
+import { Button, Snackbar, Input } from 'react-toolbox';
+
 import { fnAuth } from '../services/api';
-import Input from 'react-toolbox/lib/input';
-import { Button, IconButton, Snackbar } from 'react-toolbox';
 import LoadingComponent from './LoadingComponent';
 
 class LoginFormComponent extends React.Component {
@@ -13,19 +13,26 @@ class LoginFormComponent extends React.Component {
       lock: false,
     };
   }
-  toggleForm(type='unlock') {
-    if(type === 'lock') {
-      this.setState({lock: true})
+
+  onSubmit(event) {
+    event.preventDefault();
+    const email = event.target.querySelector('input[type="email"]');
+    const password = event.target.querySelector('input[type="password"]');
+    if (email.value && password.value) {
+      this.send(email.value, password.value);
+      this.toggleForm('lock');
     } else {
-      this.setState({lock: false});
+      this.showSnackBar();
+      this.toggleForm('unlock');
     }
   }
+
   send(email, password) {
-    let formData = new FormData();
+    const formData = new FormData();
     formData.append('email', email);
     formData.append('password', password);
     fnAuth(formData).then((data) => {
-      if(data.token) {
+      if (data.token) {
         // call dispatch to the right place
         this.props.setUser(data.token);
         this.props.setAppScreen('recordings'); // go to recordings list
@@ -34,7 +41,7 @@ class LoginFormComponent extends React.Component {
         this.showSnackBar();
         this.toggleForm('unlock');
       }
-    }).catch(e => {
+    }).catch((e) => {
       // show error in case of crazy error;
       this.showSnackBar();
       this.toggleForm('unlock');
@@ -42,21 +49,17 @@ class LoginFormComponent extends React.Component {
       throw new Error(e.message);
     });
   }
-  onSubmit(event) {
-    event.preventDefault();
-    const email = event.target.querySelector('input[type="email"]');
-    const password = event.target.querySelector('input[type="password"]');
-    if(email.value && password.value) {
-      this.send(email.value, password.value)
-      this.toggleForm('lock');
+
+  toggleForm(type = 'unlock') {
+    if (type === 'lock') {
+      this.setState({ lock: true });
     } else {
-      this.showSnackBar();
-      this.toggleForm('unlock');
+      this.setState({ lock: false });
     }
   }
 
   showSnackBar() {
-    this.setState({active: true});
+    this.setState({ active: true });
   }
 
   hideSnackBar() {
@@ -65,25 +68,25 @@ class LoginFormComponent extends React.Component {
   render() {
     return (
       <ReactCSSTransitionGroup
-        transitionName={"fade"}
+        transitionName={'fade'}
         transitionAppear
         transitionAppearTimeout={500}
         transitionEnterTimeout={500}
         transitionLeaveTimeout={300}
       >
-        <section className='content'>
-          <form ref='form' onSubmit={(event) => this.onSubmit(event)}>
-            <Input type='email' label='Email address' icon='email' disabled={this.state.lock} />
-            <Input type='password' label='Password' icon='lock' disabled={this.state.lock} />
-            <Button label='Submit' raised primary disabled={this.state.lock} />
+        <section className="content">
+          <form ref={(form) => { this.form = form; }} onSubmit={event => this.onSubmit(event)}>
+            <Input type="email" label="Email address" icon="email" disabled={this.state.lock} />
+            <Input type="password" label="Password" icon="lock" disabled={this.state.lock} />
+            <Button label="Submit" raised primary disabled={this.state.lock} />
             <Snackbar
-              action='Dismiss'
+              action="Dismiss"
               active={this.state.active}
-              label='An Error occurred, try again later.'
+              label="An Error occurred, try again later."
               timeout={2000}
               onClick={() => this.hideSnackBar()}
               onTimeout={() => this.hideSnackBar()}
-              type='cancel'
+              type="cancel"
             />
           </form>
           {this.state.lock ? <LoadingComponent /> : ''}
@@ -92,5 +95,10 @@ class LoginFormComponent extends React.Component {
     );
   }
 }
+
+LoginFormComponent.propTypes = {
+  setUser: PropTypes.func.isRequired,
+  setAppScreen: PropTypes.func.isRequired,
+};
 
 export default LoginFormComponent;
