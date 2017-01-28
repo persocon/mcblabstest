@@ -25,8 +25,14 @@ class LoginFormComponent extends React.Component {
           this.props.setUser(data.token);
           this.props.setAppScreen('recordings'); // go to recordings list
         } else {
+          // show error if not status 200
           this.showSnackBar();
         }
+      }).catch(e => {
+        // show error in case of crazy error;
+        this.showSnackBar();
+        // raise error about the error ?!
+        throw new Error(e.message);
       });
     } else {
       this.showSnackBar();

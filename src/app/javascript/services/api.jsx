@@ -15,19 +15,13 @@ const fnFetch = (href, token) => {
 
 const fnAuth = (formData) => {
   const url = `https://api-dev.linementor.com/core/auth/`;
-  return fetch(url, {
-    method: 'POST',
-    body: formData,
-  })
+  return axios.post(url, formData)
   .then((response) => {
     if(response.status === 200) {
-      return response.json();
+      return response.data;
     } else {
       return response.status; // send error back so it can be handle on the form ?!
     }
-  })
-  .catch((e) =>{
-    throw new Error(e.message);
   });
 }
 
