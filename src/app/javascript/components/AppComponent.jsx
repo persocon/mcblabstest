@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
-import AppBar from 'react-toolbox/lib/app_bar';
-import Navigation from 'react-toolbox/lib/navigation';
+import { AppBar, Button } from 'react-toolbox';
 
 import LoginFormContainer from '../containers/LoginFormContainer';
 import RecordingsContainer from '../containers/RecordingsContainer';
@@ -18,11 +17,21 @@ class AppComponent extends React.Component {
     }
     return(<LoginFormContainer />); // redundant answer if no case fulfill
   }
+  logout(event) {
+    this.props.resetApp();
+    this.props.resetUser();
+  }
+  renderLogoutButton() {
+    if(this.props.user.token) {
+      return(<Button icon='exit_to_app' floating accent mini onMouseUp={(event) => this.logout(event)} />);
+    }
+  }
   render() {
     return (
       <section>
-        <AppBar title='React Toolbox' leftIcon='menu'>
+        <AppBar title='React Toolbox'>
           MCBLabs Test
+          {this.renderLogoutButton()}
         </AppBar>
         {this.screen()}
       </section>
@@ -31,6 +40,9 @@ class AppComponent extends React.Component {
 }
 AppComponent.propTypes = {
   getAppScreen: PropTypes.func.isRequired,
+  resetApp: PropTypes.func.isRequired,
+  resetUser: PropTypes.func.isRequired,
   app: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
 };
 export default AppComponent;

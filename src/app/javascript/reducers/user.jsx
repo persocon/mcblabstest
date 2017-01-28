@@ -15,6 +15,10 @@ const user = (state = initialState, action) => {
     case 'GET_USER': {
       return state;
     }
+    case 'RESET_USER': {
+      const resetState = update(state, { $set: initialState });
+      return resetState;
+    }
     default: {
       return state;
     }

@@ -45,7 +45,6 @@ class RecordingItemComponent extends React.Component {
   }
   created() {
     if (this.props.recording.created) {
-      // const humanDate = moment(this.props.recording.created, 'Europe/Berlin');
       return(<Moment format='DD/MM/YYYY HH:mm:ss' tz='Europe/Berlin'>{this.props.recording.created}</Moment>);
     }
   }

@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import RecordingItemComponent from './RecordingItemComponent';
+import LoadingComponent from './LoadingComponent';
 
 class RecordingsComponent extends React.Component {
   componentWillMount() {
@@ -13,6 +14,7 @@ class RecordingsComponent extends React.Component {
       );
       return (<ul className="recordingList">{recordingList}</ul>);
     }
+    return (<LoadingComponent />);
   }
   render() {
     return (

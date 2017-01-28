@@ -3,9 +3,10 @@ import { persistStore, autoRehydrate } from 'redux-persist';
 import createSagaMiddleware from 'redux-saga';
 import appReducer from '../reducers/index';
 import rootSaga from '../sagas';
+import validateToken from './checkTokenMiddleware';
 
 const sagaMiddleware = createSagaMiddleware();
-const middlewares = [sagaMiddleware];
+const middlewares = [validateToken, sagaMiddleware];
 
 const middlewareEnhancer = applyMiddleware(...middlewares);
 
@@ -21,7 +22,7 @@ export default function configureStore() {
   const store = createStore(
     appReducer,
     undefined,
-    composedEnhancer
+    composedEnhancer,
   );
   persistStore(store, { blacklist: ['recordings'] });
   sagaMiddleware.run(rootSaga);
