@@ -30,7 +30,7 @@ when running for the first time, make sure to add the remote git with the heroku
 
 ```
 heroku buildpacks:set heroku/nodejs
-heroku git:remote -a mcblabstest
+heroku git:remote -a <heroku git instance>
 ```
 and after that generate the dist files:
 
