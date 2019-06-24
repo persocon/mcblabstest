@@ -50,7 +50,7 @@
     "sass-lint": "~1.7.0",
     "sass-loader": "~4.1.1",
     "sinon": "^1.17.7",
-    "style-loader": "~0.13.1",
+    "style-loader": "~0.23.1",
     "webpack": "~1.15.0",
     "webpack-dev-middleware": "~1.12.2",
     "webpack-dev-server": "^1.16.2",
