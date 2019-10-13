@@ -69,7 +69,7 @@
     "react-moment": "^0.1.2",
     "react": "~15.3.0",
     "react-addons-css-transition-group": "~15.3.0",
-    "react-addons-update": "~15.3.0",
+    "react-addons-update": "~15.6.2",
     "react-dom": "~15.3.0",
     "react-redux": "^5.0.2",
     "react-toolbox": "~1.1.2",
